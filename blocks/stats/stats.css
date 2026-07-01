@@ -1,0 +1,50 @@
+.stats {
+  background: var(--color-fg-deep);
+  color: #fff;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.stats > div {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+}
+
+.stats > div > div {
+  padding: 22px 26px;
+}
+
+.stats > div > div p:first-child strong {
+  font-family: var(--heading-font-family);
+  font-weight: 700;
+  font-size: 1.75rem;
+  color: #fff;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.stats > div > div p:first-child strong::before {
+  content: "";
+  width: 20px;
+  height: 3px;
+  background: var(--color-accent);
+  border-radius: 2px;
+}
+
+.stats > div > div p:last-child {
+  font-size: var(--body-sm);
+  color: rgba(255, 255, 255, 0.62);
+  margin-top: 4px;
+}
+
+@media (width < 767px) {
+  .stats > div {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .stats > div > div {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+}

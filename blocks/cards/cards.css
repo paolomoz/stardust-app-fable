@@ -1,27 +1,99 @@
-.cards > ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
+.cards {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(257px, 1fr));
-  gap: 24px;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-top: 36px;
 }
 
-.cards > ul > li {
-  border: 1px solid #dadada;
-  background-color: var(--background-color);
+.cards > div {
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  color: var(--color-fg);
+  transition: transform var(--lift-duration) var(--ease-out-quart), box-shadow var(--lift-duration) var(--ease-out-quart), border-color var(--lift-duration) var(--ease-out-quart);
 }
 
-.cards .cards-card-body {
-  margin: 16px;
+.cards > div:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-tile-hover);
+  border-color: var(--color-accent);
 }
 
-.cards .cards-card-image {
-  line-height: 0;
+.cards > div > div:first-child {
+  aspect-ratio: 3 / 2;
+  background: var(--color-surface);
+  overflow: hidden;
 }
 
-.cards > ul > li img {
+.cards > div > div:first-child img {
   width: 100%;
-  aspect-ratio: 4 / 3;
+  height: 100%;
   object-fit: cover;
+  transition: transform 700ms var(--ease-out-quart);
+}
+
+.cards > div:hover > div:first-child img { transform: scale(1.05); }
+
+.cards > div > div:last-child {
+  padding: 18px 20px 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1;
+}
+
+.cards p:first-child strong {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: var(--kicker);
+  font-weight: 700;
+  letter-spacing: var(--tracking-kicker);
+  text-transform: uppercase;
+  color: var(--color-slate-dark);
+}
+
+.cards p:first-child strong::before {
+  content: "";
+  width: 18px;
+  height: 3px;
+  background: var(--color-accent);
+  border-radius: 2px;
+}
+
+.cards h3 { font-size: 1.1875rem; }
+
+.cards a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: auto;
+  padding-top: 10px;
+  font-weight: 700;
+  color: var(--color-fg);
+  transition: gap var(--lift-duration) var(--ease-out-quart), color var(--lift-duration) var(--ease-out-quart);
+}
+
+.cards a::after {
+  content: "→";
+  color: var(--color-accent);
+  transition: transform var(--lift-duration) var(--ease-out-quart);
+}
+
+.cards a:hover { color: var(--color-accent-deep); gap: 12px; }
+.cards a:hover::after { transform: translateX(3px); }
+
+@media (width < 1024px) {
+  .cards { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (width < 767px) {
+  .cards { grid-template-columns: 1fr; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cards > div, .cards img, .cards a { transition: none; }
 }

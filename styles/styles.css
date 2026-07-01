@@ -1,325 +1,336 @@
-/*
- * Copyright 2020 Adobe. All rights reserved.
- * This file is licensed to you under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License. You may obtain a copy
- * of the License at http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software distributed under
- * the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR REPRESENTATIONS
- * OF ANY KIND, either express or implied. See the License for the specific language
- * governing permissions and limitations under the License.
- */
-
 :root {
-  /* colors */
-  --background-color: white;
-  --light-color: #f8f8f8;
-  --dark-color: #505050;
-  --text-color: #131313;
-  --link-color: #3b63fb;
-  --link-hover-color: #1d3ecf;
+  --heading-font-family: 'DINWebPro', Verdana, sans-serif;
+  --body-font-family: 'DINWebPro', Verdana, sans-serif;
 
-  /* fonts */
-  --body-font-family: roboto, roboto-fallback, sans-serif;
-  --heading-font-family: roboto-condensed, roboto-condensed-fallback, sans-serif;
+  /* perfect-fourth (1.333) modular scale, 18px anchor */
+  --heading-xxl: clamp(2.75rem, 5vw, 3.5625rem);
+  --heading-xl: clamp(2.25rem, 3.4vw, 2.6875rem);
+  --heading-lg: 2rem;
+  --heading-md: 1.5rem;
+  --body: 1.125rem;
+  --body-sm: 0.9375rem;
+  --kicker: 0.8125rem;
+  --index: 1.25rem;
 
-  /* body sizes */
-  --body-font-size-m: 22px;
-  --body-font-size-s: 19px;
-  --body-font-size-xs: 17px;
+  --line-height-heading: 1.12;
+  --line-height-body: 1.55;
+  --tracking-kicker: 0.08em;
+  --tracking-index: 0.02em;
 
-  /* heading sizes */
-  --heading-font-size-xxl: 55px;
-  --heading-font-size-xl: 44px;
-  --heading-font-size-l: 34px;
-  --heading-font-size-m: 27px;
-  --heading-font-size-s: 24px;
-  --heading-font-size-xs: 22px;
+  --color-bg: #ffffff;
+  --color-fg: #191e2b;
+  --color-fg-deep: #11141d;
+  --color-slate: #536877;
+  --color-slate-dark: #445667;
+  --color-surface: #efefef;
+  --color-surface-warm: #edece5;
+  --color-border: #d1dae0;
+  --color-accent: #23aa08;
+  --color-accent-deep: #1d8a06;
 
-  /* nav height */
-  --nav-height: 64px;
+  --spacing-xs: 8px;
+  --spacing-sm: 16px;
+  --spacing-md: 24px;
+  --spacing-lg: 32px;
+  --spacing-xl: 48px;
+  --spacing-2xl: 64px;
+
+  --section-padding: 64px;
+  --max-width: 1240px;
+  --radius: 8px;
+  --radius-sm: 3px;
+
+  --shadow-tile-hover: 0 8px 24px rgba(25, 30, 43, 0.10);
+  --shadow-card: 0 1px 0 rgba(25, 30, 43, 0.04);
+
+  --ease-out-quart: cubic-bezier(0.42, 0, 0, 1);
+  --lift-duration: 380ms;
+
+  --nav-height: 96px;
 }
 
-/* fallback fonts */
-@font-face {
-  font-family: roboto-condensed-fallback;
-  size-adjust: 88.82%;
-  src: local('Arial');
-}
+*, *::before, *::after { box-sizing: border-box; }
 
-@font-face {
-  font-family: roboto-fallback;
-  size-adjust: 99.529%;
-  src: local('Arial');
-}
-
-@media (width >= 900px) {
-  :root {
-    /* body sizes */
-    --body-font-size-m: 18px;
-    --body-font-size-s: 16px;
-    --body-font-size-xs: 14px;
-
-    /* heading sizes */
-    --heading-font-size-xxl: 45px;
-    --heading-font-size-xl: 36px;
-    --heading-font-size-l: 28px;
-    --heading-font-size-m: 22px;
-    --heading-font-size-s: 20px;
-    --heading-font-size-xs: 18px;
-  }
-}
+html { -webkit-text-size-adjust: 100%; }
 
 body {
-  display: none;
   margin: 0;
-  background-color: var(--background-color);
-  color: var(--text-color);
   font-family: var(--body-font-family);
-  font-size: var(--body-font-size-m);
-  line-height: 1.6;
+  font-size: var(--body);
+  line-height: var(--line-height-body);
+  color: var(--color-fg);
+  background: var(--color-bg);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  display: none;
 }
 
-body.appear {
-  display: block;
-}
+body.appear { display: block; }
 
 header {
-  height: var(--nav-height);
+  min-height: var(--nav-height);
 }
 
-header .header,
-footer .footer {
-  visibility: hidden;
+footer {
+  min-height: 200px;
 }
 
-header .header[data-block-status="loaded"],
-footer .footer[data-block-status="loaded"] {
-  visibility: visible;
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  margin-top: 0.8em;
-  margin-bottom: 0.25em;
+h1, h2, h3, h4, h5 {
   font-family: var(--heading-font-family);
-  font-weight: 600;
-  line-height: 1.25;
-  scroll-margin: 40px;
-}
-
-h1 { font-size: var(--heading-font-size-xxl); }
-h2 { font-size: var(--heading-font-size-xl); }
-h3 { font-size: var(--heading-font-size-l); }
-h4 { font-size: var(--heading-font-size-m); }
-h5 { font-size: var(--heading-font-size-s); }
-h6 { font-size: var(--heading-font-size-xs); }
-
-p,
-dl,
-ol,
-ul,
-pre,
-blockquote {
-  margin-top: 0.8em;
-  margin-bottom: 0.25em;
-}
-
-code,
-pre {
-  font-size: var(--body-font-size-s);
-}
-
-pre {
-  padding: 16px;
-  border-radius: 8px;
-  background-color: var(--light-color);
-  overflow-x: auto;
-  white-space: pre;
-}
-
-main > div {
-  margin: 40px 16px;
-}
-
-input,
-textarea,
-select,
-button {
-  font: inherit;
-}
-
-/* links */
-a:any-link {
-  color: var(--link-color);
-  text-decoration: none;
-  overflow-wrap: break-word;
-}
-
-a:hover {
-  color: var(--link-hover-color);
-  text-decoration: underline;
-}
-
-/* buttons */
-p.button-wrapper {
-  margin: 12px 0;
-}
-
-a.button:any-link,
-button.button {
-  box-sizing: border-box;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  max-width: 100%;
+  font-weight: 700;
   margin: 0;
-  border: 2px solid transparent;
-  border-radius: 2.4em;
-  padding: 0.5em 1.2em;
-  font: inherit;
-  font-weight: 500;
-  line-height: 1.25;
-  text-decoration: none;
-  cursor: pointer;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  line-height: var(--line-height-heading);
 }
 
-a.button[aria-disabled="true"],
-button.button:disabled {
-  cursor: not-allowed;
-  pointer-events: none;
+p { margin: 0; }
+
+a { color: inherit; text-decoration: none; }
+
+img { display: block; max-width: 100%; }
+
+ul { margin: 0; padding: 0; list-style: none; }
+
+:focus-visible {
+  outline: 3px solid var(--color-accent);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
 }
 
-a.button.primary,
-button.button.primary {
-  border-color: var(--text-color);
-  background-color: var(--text-color);
-  color: var(--background-color);
-}
-
-a.button.primary:hover,
-a.button.primary:focus-visible,
-button.button.primary:hover,
-button.button.primary:focus-visible {
-  border-color: var(--dark-color);
-  background-color: var(--dark-color);
-  color: var(--light-color);
-}
-
-a.button.primary[aria-disabled="true"],
-a.button.primary[aria-disabled="true"]:hover,
-a.button.primary[aria-disabled="true"]:focus-visible,
-button.button.primary:disabled,
-button.button.primary:disabled:hover,
-button.button.primary:disabled:focus-visible {
-  background-color: var(--light-color);
-  border-color: var(--light-color);
-  color: var(--dark-color);
-}
-
-a.button.secondary,
-button.button.secondary {
-  border-color: var(--text-color);
-  background-color: transparent;
-  color: var(--text-color);
-}
-
-a.button.secondary:hover,
-a.button.secondary:focus-visible,
-button.button.secondary:hover,
-button.button.secondary:focus-visible {
-  border-color: var(--dark-color);
-  background-color: var(--light-color);
-  color: var(--dark-color);
-}
-
-a.button.secondary[aria-disabled="true"],
-a.button.secondary[aria-disabled="true"]:hover,
-a.button.secondary[aria-disabled="true"]:focus-visible,
-button.button.secondary:disabled,
-button.button.secondary:disabled:hover,
-button.button.secondary:disabled:focus-visible {
-  background-color: var(--light-color);
-  border-color: var(--light-color);
-  color: var(--dark-color);
-}
-
-/* high-impact call-to-action */
-a.button.accent,
-button.button.accent {
-  border-color: var(--link-color);
-  background-color: var(--link-color);
-  color: var(--background-color);
-}
-
-a.button.accent:hover,
-a.button.accent:focus-visible,
-button.button.accent:hover,
-button.button.accent:focus-visible {
-  border-color: var(--link-hover-color);
-  background-color: var(--link-hover-color);
-}
-
-a.button.accent[aria-disabled="true"],
-a.button.accent[aria-disabled="true"]:hover,
-a.button.accent[aria-disabled="true"]:focus-visible,
-button.button.accent:disabled,
-button.button.accent:disabled:hover,
-button.button.accent:disabled:focus-visible {
-  background-color: var(--light-color);
-  border-color: var(--light-color);
-  color: var(--dark-color);
-}
-
-main img {
-  max-width: 100%;
-  width: auto;
-  height: auto;
-}
-
-.icon {
-  display: inline-block;
-  height: 24px;
-  width: 24px;
-}
-
-.icon img {
-  height: 100%;
-  width: 100%;
-}
-
-/* sections */
+/* ── Section scaffold ─────────────────────────────────── */
 main > .section {
-  margin: 40px 0;
+  padding-block: var(--section-padding);
 }
 
 main > .section > div {
-  max-width: 1200px;
-  margin: auto;
-  padding: 0 24px;
+  width: 100%;
+  max-width: var(--max-width);
+  margin-inline: auto;
+  padding-inline: clamp(20px, 4vw, 40px);
 }
 
-main > .section:first-of-type {
-  margin-top: 0;
+/* Full-bleed sections (hero, stats, register, heritage) manage their own padding */
+main > .section:has(> .hero-wrapper),
+main > .section:has(> .stats-wrapper) {
+  padding-block: 0;
 }
 
-@media (width >= 900px) {
-  main > .section > div {
-    padding: 0 32px;
+main > .section:has(> .hero-wrapper) > div,
+main > .section:has(> .stats-wrapper) > div,
+main > .section:has(> .register-wrapper) > div,
+main > .section:has(> .heritage-wrapper) > div {
+  max-width: none;
+  padding-inline: 0;
+}
+
+main > .section.surface {
+  background: var(--color-surface);
+}
+
+main > .section.dark {
+  background: var(--color-fg-deep);
+  color: #fff;
+}
+
+main > .section.dark h1,
+main > .section.dark h2,
+main > .section.dark h3,
+main > .section.dark h4 {
+  color: #fff;
+}
+
+/* Kicker: leading bold paragraph before a heading */
+main > .section > div > p:first-child > strong:only-child,
+.default-kicker {
+  color: var(--color-slate);
+}
+
+/* Section head layout for default content */
+main > .section > div > h2 {
+  font-size: var(--heading-xl);
+  letter-spacing: -0.005em;
+  margin-top: 12px;
+  max-width: 22ch;
+}
+
+main > .section > div > p {
+  margin-top: 10px;
+}
+
+main > .section.dark > div > p {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* generic CTA link styling for default-content links */
+main > .section > div > p > a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 700;
+  color: var(--color-fg);
+  transition: gap var(--lift-duration) var(--ease-out-quart), color var(--lift-duration) var(--ease-out-quart);
+}
+
+main > .section > div > p > a::after {
+  content: "→";
+  color: var(--color-accent);
+  transition: transform var(--lift-duration) var(--ease-out-quart);
+}
+
+main > .section > div > p > a:hover {
+  color: var(--color-accent-deep);
+  gap: 12px;
+}
+
+main > .section > div > p > a:hover::after {
+  transform: translateX(3px);
+}
+
+main > .section.dark > div > p > a { color: #fff; }
+
+/* ── Header / nav ─────────────────────────────────────── */
+header .nav-wrapper {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: var(--color-fg-deep);
+  color: #fff;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+header nav {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 32px;
+  max-width: var(--max-width);
+  margin-inline: auto;
+  padding: 16px clamp(20px, 4vw, 40px);
+}
+
+header nav .nav-brand img {
+  height: 26px;
+  width: auto;
+  filter: brightness(0) invert(1);
+}
+
+header nav .nav-sections ul {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+header nav .nav-sections a {
+  padding: 10px 14px;
+  border-radius: var(--radius-sm);
+  font-weight: 700;
+  font-size: var(--body-sm);
+  color: rgba(255, 255, 255, 0.82);
+  transition: color .15s, background .3s;
+}
+
+header nav .nav-sections a:hover {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+header nav .nav-tools ul {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+header nav .nav-tools a {
+  font-size: var(--body-sm);
+  color: rgba(255, 255, 255, 0.72);
+  transition: color .15s;
+}
+
+header nav .nav-tools a:hover { color: #fff; }
+
+/* first nav row (utility 'COM · English') collapses into brand area */
+header nav .nav-brand p:first-child { font-size: 0; }
+
+@media (width < 900px) {
+  header nav {
+    grid-template-columns: 1fr auto;
+    gap: 16px;
   }
+  header nav .nav-sections { display: none; }
 }
 
-/* section metadata */
-main .section.light,
-main .section.highlight {
-  background-color: var(--light-color);
-  margin: 0;
-  padding: 40px 0;
+/* ── Footer ───────────────────────────────────────────── */
+footer .footer {
+  background: #0b0d13;
+  color: rgba(255, 255, 255, 0.72);
+  padding-block: 56px 40px;
 }
+
+footer .footer > div {
+  max-width: var(--max-width);
+  margin-inline: auto;
+  padding-inline: clamp(20px, 4vw, 40px);
+}
+
+footer .footer > div:first-child {
+  display: grid;
+  grid-template-columns: 1.4fr repeat(4, 1fr);
+  gap: 40px;
+}
+
+footer .footer img {
+  height: 24px;
+  filter: brightness(0) invert(1);
+}
+
+footer .footer > div:first-child > div:first-child p {
+  margin-top: 18px;
+  max-width: 34ch;
+  font-size: var(--body-sm);
+}
+
+footer .footer h4 {
+  color: #fff;
+  font-size: var(--body-sm);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 14px;
+}
+
+footer .footer a {
+  display: block;
+  padding: 5px 0;
+  font-size: var(--body-sm);
+  transition: color .15s;
+}
+
+footer .footer a:hover { color: #fff; }
+
+footer .footer > div:last-child {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 24px;
+  align-items: center;
+  margin-top: 44px;
+  padding-top: 24px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  font-size: var(--body-sm);
+}
+
+footer .footer > div:last-child > p { margin-right: auto; }
+
+footer .footer > div:last-child ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 20px;
+}
+
+@media (width < 900px) {
+  footer .footer > div:first-child { grid-template-columns: 1fr 1fr; gap: 32px; }
+  footer .footer > div:first-child > div:first-child { grid-column: 1 / -1; }
+}
+
+@media (width < 600px) {
+  footer .footer > div:first-child { grid-template-columns: 1fr; }
+}
+
+/* stardust-deploy festool-com 1782948284660 */

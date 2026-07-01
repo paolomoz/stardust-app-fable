@@ -1,0 +1,102 @@
+.themes {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  margin-top: 36px;
+}
+
+.themes > div {
+  position: relative;
+  border-radius: var(--radius);
+  overflow: hidden;
+  min-height: 340px;
+  color: #fff;
+  display: flex;
+  align-items: flex-end;
+}
+
+.themes > div.tall {
+  grid-row: span 2;
+  min-height: 696px;
+}
+
+.themes > div > div:first-child {
+  position: absolute;
+  inset: 0;
+}
+
+.themes > div > div:first-child img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 800ms var(--ease-out-quart);
+}
+
+.themes > div::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(0deg, rgba(17, 20, 29, 0.85) 0%, rgba(17, 20, 29, 0.15) 62%, rgba(17, 20, 29, 0) 100%);
+}
+
+.themes > div:hover > div:first-child img { transform: scale(1.04); }
+
+.themes > div > div:last-child {
+  position: relative;
+  z-index: 1;
+  padding: 28px;
+}
+
+.themes > div > div:last-child h3 {
+  font-size: var(--heading-md);
+  color: #fff;
+}
+
+.themes > div > div:last-child h3::before {
+  content: "";
+  display: block;
+  width: 34px;
+  height: 3px;
+  background: var(--color-accent);
+  border-radius: 2px;
+  margin-bottom: 14px;
+}
+
+.themes > div > div:last-child p {
+  color: rgba(255, 255, 255, 0.82);
+  margin-top: 8px;
+  font-size: var(--body-sm);
+}
+
+.themes a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #fff;
+  font-weight: 700;
+  margin-top: 16px;
+  transition: gap var(--lift-duration) var(--ease-out-quart);
+}
+
+.themes a::after {
+  content: "→";
+  color: var(--color-accent);
+  transition: transform var(--lift-duration) var(--ease-out-quart);
+}
+
+.themes a:hover { gap: 12px; }
+.themes a:hover::after { transform: translateX(3px); }
+
+@media (width < 1024px) {
+  .themes > div.tall { grid-row: auto; min-height: 340px; }
+}
+
+@media (width < 767px) {
+  .themes { grid-template-columns: 1fr; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .themes img, .themes a { transition: none; }
+}
