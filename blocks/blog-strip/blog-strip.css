@@ -1,0 +1,17 @@
+/* blog-strip — build trust, contained prose band (index-C-cinematic .blog-strip) */
+.blog-strip {
+  max-width: var(--max-width); margin: 0 auto;
+  display: grid; grid-template-columns: 1.4fr 1fr; gap: 40px; align-items: center;
+  background: var(--color-surface-alt); border-radius: var(--radius); padding: 44px 46px;
+}
+.blog-strip .eyebrow { margin-bottom: 10px; }
+.blog-strip h2 { margin-bottom: 14px; }
+.blog-strip p { color: var(--color-fg-soft); max-width: 52ch; }
+.blog-strip .blog-cta { justify-self: end; }
+/* CTA is the outline variant (secondary) */
+.blog-strip a.btn { align-self: center; }
+
+@media (max-width: 1024px) {
+  .blog-strip { grid-template-columns: 1fr; gap: 24px; }
+  .blog-strip .blog-cta { justify-self: start; }
+}

@@ -1,0 +1,26 @@
+/* life-stages — build trust, 3-card grid (index-C-cinematic .life-wrap) */
+.life-stages { max-width: var(--max-width); margin: 0 auto; padding: 0 24px; }
+.life-stages .life-head { margin-bottom: 26px; }
+.life-stages .life-head .eyebrow { margin-bottom: 10px; }
+.life-stages .life-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.life-stages .life-card {
+  background: #fff; border-radius: var(--radius); padding: 30px 28px; box-shadow: var(--shadow-card);
+  display: flex; flex-direction: column; gap: 12px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.life-stages .life-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-card-lift); }
+.life-stages .life-card .chip {
+  align-self: flex-start;
+  font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; font-weight: var(--weight-label);
+  color: var(--color-accent-deep); background: rgb(0 148 212 / 10%);
+  border-radius: var(--radius-pill); padding: 5px 13px;
+}
+.life-stages .life-card h3 { font-size: var(--heading-md); }
+.life-stages .life-card p { color: var(--color-fg-soft); font-size: var(--body-sm); flex-grow: 1; }
+
+@media (max-width: 900px) {
+  .life-stages .life-grid { grid-template-columns: 1fr; }
+}
+
+/* warm band continues from search-triad */
+.section.life-stages-section { background: var(--color-surface-alt); padding-top: 12px; }

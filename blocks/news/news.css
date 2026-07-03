@@ -1,0 +1,25 @@
+/* news — build trust, 4-card grid (index-C-cinematic .section[news]) */
+.news { max-width: var(--max-width); margin: 0 auto; padding: 0 24px; }
+.news .section-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 20px; margin-bottom: 34px; }
+.news .section-head h2 { max-width: 20ch; }
+
+.news .news-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 22px; }
+.news .news-card {
+  display: flex; flex-direction: column; gap: 12px;
+  background: #fff; border: 1px solid var(--color-border); border-radius: var(--radius);
+  padding: 26px 24px; position: relative;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+.news .news-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-card); border-color: transparent; }
+.news .news-meta { display: flex; align-items: center; gap: 10px; font-size: 0.78rem; color: var(--color-fg-soft); }
+.news .news-tag {
+  font-weight: var(--weight-label); letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--color-accent-deep); font-size: 0.72rem;
+}
+.news .news-card h3 { font-size: 1.16rem; line-height: 1.3; flex-grow: 1; }
+.news .news-clinic { font-size: var(--body-sm); color: var(--color-fg-soft); font-weight: var(--weight-label); }
+.news .news-card a.stretched::after { content: ""; position: absolute; inset: 0; }
+
+@media (max-width: 1024px) { .news .news-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 768px) { .news .section-head { flex-direction: column; align-items: flex-start; } }
+@media (max-width: 640px) { .news .news-grid { grid-template-columns: 1fr; } }

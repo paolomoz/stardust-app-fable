@@ -1,0 +1,39 @@
+/* search-triad — primary-action routing plate (index-C-cinematic .plate).
+   The "rising plate" motion is dropped; the warm band + elevated plate card
+   surface are kept. */
+.search-triad {
+  background: #fff; border-radius: 22px;
+  box-shadow: 0 24px 60px -28px rgb(40 36 32 / 45%), 0 2px 0 rgb(0 0 0 / 2%);
+  border: 1px solid var(--color-border);
+  padding: 44px 44px 48px;
+  max-width: var(--max-width); margin: 0 auto;
+}
+.search-triad .band-head { margin-bottom: 30px; }
+.search-triad .band-head h2 { margin-bottom: 8px; }
+.search-triad .band-head p { color: var(--color-fg-soft); max-width: 54ch; }
+
+.search-triad .triad { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.search-triad .triad-card {
+  display: flex; flex-direction: column; gap: 14px;
+  background: var(--color-surface); border-radius: var(--radius); padding: 30px 28px;
+  border: 1px solid var(--color-border);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+.search-triad .triad-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-card-lift); border-color: transparent; }
+.search-triad .icon-badge {
+  width: 54px; height: 54px; border-radius: 50%;
+  display: grid; place-items: center; flex-shrink: 0;
+  background: rgb(0 148 212 / 10%); color: var(--color-accent-deep);
+}
+.search-triad .icon-badge svg { width: 26px; height: 26px; }
+.search-triad .triad-card h3 { font-size: var(--heading-md); }
+.search-triad .triad-card p { color: var(--color-fg-soft); font-size: var(--body-sm); flex-grow: 1; }
+.search-triad .triad-card a.btn { align-self: flex-start; margin-top: 4px; }
+
+/* warm band wrapper */
+.section.search-triad-section { background: var(--color-surface-alt); }
+
+@media (max-width: 900px) {
+  .search-triad .triad { grid-template-columns: 1fr; }
+  .search-triad { padding: 34px 30px 38px; }
+}
