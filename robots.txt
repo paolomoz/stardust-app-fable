@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://wheelercat-com--stardust-app-fable--paolomoz.aem.page/sitemap.xml
