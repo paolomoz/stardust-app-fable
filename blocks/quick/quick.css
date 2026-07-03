@@ -1,0 +1,39 @@
+/* quick — quick-actions link rail.
+   Section schema: stardust/eds-schema/home.json#quick-actions
+   Scoped `.quick` (AuthorKit: no `.block` class). */
+
+.quick {
+  background: var(--color-surface);
+  border-bottom: 1px solid var(--color-border);
+}
+.quick__wrap {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding-inline: var(--spacing-lg);
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 4px 0;
+}
+.quick__label {
+  font-family: var(--heading-font-family);
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  font-weight: 700;
+  font-size: 12px;
+  color: var(--color-muted-text);
+  padding: 16px 20px 16px 0;
+}
+.quick a {
+  font-family: var(--display-font-family);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: .03em;
+  font-size: 15px;
+  color: var(--color-ink);
+  text-decoration: none;
+  padding: 16px 16px;
+  border-left: 1px solid var(--color-border);
+  transition: background-color .15s, color .15s;
+}
+.quick a:hover { background: var(--color-accent); color: var(--color-ink); }

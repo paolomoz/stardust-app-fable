@@ -1,0 +1,48 @@
+/* services — service card grid.
+   Section schema: stardust/eds-schema/home.json#services
+   Scoped `.services` (AuthorKit: no `.block` class). */
+
+.services { padding-block: var(--section-padding); }
+.services__wrap { max-width: var(--max-width); margin: 0 auto; padding-inline: var(--spacing-lg); }
+
+.services__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.services .service {
+  display: flex;
+  flex-direction: column;
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-top: 4px solid var(--color-ink);
+  text-decoration: none;
+  color: inherit;
+  transition: border-top-color .15s ease, transform .15s ease;
+}
+.services .service:hover { border-top-color: var(--color-accent); }
+.services .service__body { padding: 24px 24px 26px; display: flex; flex-direction: column; gap: 8px; flex: 1; }
+.services .service__body h3 { font-family: var(--display-font-family); font-weight: 600; text-transform: uppercase; font-size: var(--heading-sm); letter-spacing: .01em; }
+.services .service__body p { margin: 0; font-size: 15px; color: var(--color-fg); }
+.services .service__go {
+  margin-top: auto;
+  padding-top: 14px;
+  font-family: var(--heading-font-family);
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  font-weight: 700;
+  font-size: 13px;
+  color: var(--color-ink);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.services .service__go::after { content: "→"; color: var(--color-accent); transition: transform .15s ease; }
+.services .service:hover .service__go::after { transform: translateX(4px); }
+.services__foot { margin-top: 36px; }
+
+/* tile-cascade entrance (live-systems) */
+.services .service[data-tile-anim] { opacity: 0; transform: translateY(28px) rotateX(8deg); }
+.services .service.tile-in { opacity: 1; transform: none; transition: opacity .6s var(--ease-entrance), transform .6s var(--ease-entrance); }
+
+@media (max-width: 1024px) { .services__grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 768px) { .services__grid { grid-template-columns: 1fr; } }
+@media (prefers-reduced-motion: reduce) {
+  .services .service[data-tile-anim] { opacity: 1 !important; transform: none !important; }
+}

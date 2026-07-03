@@ -1,0 +1,73 @@
+/* ticker — live operational-state header (live-systems register signature).
+   Section schema: stardust/eds-schema/home.json#live-ticker
+   Scoped `.ticker` (AuthorKit: no `.block` class). */
+
+.ticker {
+  background: var(--color-black);
+  color: var(--color-on-ink);
+  border-bottom: 2px solid var(--color-accent);
+  overflow: hidden;
+  position: relative;
+}
+.ticker__inner { display: flex; align-items: center; }
+.ticker__badge {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  background: var(--color-accent);
+  color: var(--color-ink);
+  font-family: var(--heading-font-family);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  font-size: 12px;
+  padding: 9px 16px;
+  white-space: nowrap;
+  z-index: 2;
+}
+.ticker__viewport {
+  flex: 1 1 auto;
+  overflow: hidden;
+  position: relative;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 3%, #000 97%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 3%, #000 97%, transparent);
+}
+.ticker__track {
+  display: inline-flex;
+  align-items: center;
+  white-space: nowrap;
+  will-change: transform;
+  animation: tickerScroll 34s linear infinite;
+}
+.ticker:hover .ticker__track,
+.ticker:focus-within .ticker__track { animation-play-state: paused; }
+.ticker__item {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--display-font-family);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+  font-size: 13px;
+  color: #e8e8e8;
+  padding: 9px 26px;
+}
+.ticker__item b { color: var(--color-accent); font-weight: 600; }
+.ticker__item strong { color: var(--color-accent); font-weight: 600; }
+.ticker__item::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  background: var(--color-accent);
+  display: inline-block;
+}
+@keyframes tickerScroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ticker__track { animation: none !important; transform: none !important; }
+}

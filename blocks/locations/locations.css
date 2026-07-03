@@ -1,0 +1,55 @@
+/* locations — split media + live location panel.
+   Section schema: stardust/eds-schema/home.json#locations  (template-slotted)
+   Scoped `.locations` (AuthorKit: no `.block` class). */
+
+.locations { padding-block: var(--section-padding); }
+.locations__wrap { max-width: var(--max-width); margin: 0 auto; padding-inline: var(--spacing-lg); }
+.locations__grid { display: grid; grid-template-columns: 1.05fr .95fr; gap: 40px; align-items: stretch; }
+
+.locations__map {
+  position: relative;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  min-height: 340px;
+  overflow: hidden;
+}
+.locations__map img { width: 100%; height: 100%; object-fit: cover; opacity: .9; }
+.locations__map .badge {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  background: var(--color-accent);
+  color: var(--color-ink);
+  font-family: var(--display-font-family);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+  padding: 12px 20px;
+  font-size: 15px;
+}
+.locations__panel { display: flex; flex-direction: column; justify-content: center; }
+.locations__panel .big { font-family: var(--display-font-family); font-weight: 700; font-size: clamp(56px, 8vw, 96px); color: var(--color-ink); line-height: .9; margin: 0; }
+.locations__panel .big span { color: var(--color-accent); }
+.locations__panel .kicker { font-family: var(--heading-font-family); text-transform: uppercase; letter-spacing: .08em; font-weight: 700; margin: 6px 0 0; color: var(--color-ink); }
+
+.loc-live { list-style: none; margin: 20px 0 0; padding: 0; display: flex; flex-direction: column; gap: 0; border-top: 1px solid var(--color-border); }
+.loc-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--color-border);
+  font-family: var(--heading-font-family);
+  text-transform: uppercase;
+  letter-spacing: .04em;
+  font-size: 13px;
+  color: var(--color-ink);
+}
+.loc-row .loc-name { font-weight: 700; }
+.loc-row .loc-state { margin-left: auto; font-size: 11px; letter-spacing: .1em; color: var(--color-live-green); }
+.locations__addr { margin: 18px 0 0; font-style: normal; font-size: var(--body-lg); color: var(--color-fg); }
+.locations__addr a { color: var(--color-ink); font-weight: 700; text-decoration: none; }
+.locations__addr a:hover { color: var(--color-alert); }
+.locations__cta { margin-top: 26px; display: flex; gap: 12px; flex-wrap: wrap; }
+
+@media (max-width: 1024px) { .locations__grid { grid-template-columns: 1fr; } }

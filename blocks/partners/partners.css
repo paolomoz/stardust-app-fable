@@ -1,0 +1,36 @@
+/* partners — brand-name tile grid (surface-alt ground).
+   Section schema: stardust/eds-schema/home.json#partners
+   Scoped `.partners` (AuthorKit: no `.block` class). */
+
+.partners { padding-block: var(--section-padding); background: var(--color-surface-alt); }
+.partners__wrap { max-width: var(--max-width); margin: 0 auto; padding-inline: var(--spacing-lg); }
+.partners__grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px; }
+
+.partners .partner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  min-height: 92px;
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  font-family: var(--display-font-family);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+  font-size: 17px;
+  color: var(--color-muted-text);
+  text-decoration: none;
+  padding: 16px;
+  transition: color .15s, border-color .15s;
+}
+.partners .partner:hover { color: var(--color-ink); border-color: var(--color-ink); }
+
+/* tile-cascade entrance */
+.partners .partner[data-tile-anim] { opacity: 0; transform: translateY(28px) rotateX(8deg); }
+.partners .partner.tile-in { opacity: 1; transform: none; transition: opacity .6s var(--ease-entrance), transform .6s var(--ease-entrance); }
+
+@media (max-width: 768px) { .partners__grid { grid-template-columns: repeat(2, 1fr); } }
+@media (prefers-reduced-motion: reduce) {
+  .partners .partner[data-tile-anim] { opacity: 1 !important; transform: none !important; }
+}

@@ -1,0 +1,43 @@
+/* resources — 3-up image card grid (surface-alt ground).
+   Section schema: stardust/eds-schema/home.json#resources
+   Scoped `.resources` (AuthorKit: no `.block` class). */
+
+.resources { padding-block: var(--section-padding); background: var(--color-surface-alt); }
+.resources__wrap { max-width: var(--max-width); margin: 0 auto; padding-inline: var(--spacing-lg); }
+.resources__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+
+.resources .resource {
+  border: 1px solid var(--color-border);
+  background: var(--color-bg);
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  flex-direction: column;
+  transition: border-color .15s;
+}
+.resources .resource:hover { border-color: var(--color-ink); }
+.resources .resource__fig { aspect-ratio: 3 / 2; background: var(--color-surface); border-bottom: 1px solid var(--color-border); overflow: hidden; }
+.resources .resource__fig img { width: 100%; height: 100%; object-fit: cover; transition: transform .3s ease; }
+.resources .resource:hover .resource__fig img { transform: scale(1.04); }
+.resources .resource__body { padding: 22px; display: flex; flex-direction: column; gap: 10px; flex: 1; }
+.resources .resource__body h3 { font-family: var(--heading-font-family); font-weight: 700; font-size: var(--heading-sm); color: var(--color-ink); }
+.resources .resource__more {
+  margin-top: auto;
+  font-family: var(--heading-font-family);
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  font-weight: 700;
+  font-size: 13px;
+  color: var(--color-ink);
+}
+.resources .resource__more::after { content: " →"; color: var(--color-accent); }
+.resources__foot { margin-top: 34px; }
+
+/* tile-cascade entrance */
+.resources .resource[data-tile-anim] { opacity: 0; transform: translateY(28px) rotateX(8deg); }
+.resources .resource.tile-in { opacity: 1; transform: none; transition: opacity .6s var(--ease-entrance), transform .6s var(--ease-entrance); }
+
+@media (max-width: 768px) { .resources__grid { grid-template-columns: 1fr; } }
+@media (prefers-reduced-motion: reduce) {
+  .resources .resource[data-tile-anim] { opacity: 1 !important; transform: none !important; }
+}
